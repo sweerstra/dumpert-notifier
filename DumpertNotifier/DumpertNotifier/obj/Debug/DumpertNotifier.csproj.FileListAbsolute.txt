@@ -11,3 +11,15 @@ C:\Users\Sjoerd\Documents\Visual Studio 2013\Projects\DumpertNotifier\DumpertNot
 C:\Users\Sjoerd\Documents\Visual Studio 2013\Projects\DumpertNotifier\DumpertNotifier\bin\Debug\HtmlAgilityPack.dll
 C:\Users\Sjoerd\Documents\Visual Studio 2013\Projects\DumpertNotifier\DumpertNotifier\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\Sjoerd\Documents\Visual Studio 2013\Projects\DumpertNotifier\DumpertNotifier\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\bin\Debug\DumpertNotifier.exe.config
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\obj\Debug\DumpertNotifier.exe
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\obj\Debug\DumpertNotifier.pdb
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\bin\Debug\dumpert-favicon.ico
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\bin\Debug\DumpertNotifier.exe
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\bin\Debug\DumpertNotifier.pdb
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\obj\Debug\DumpertNotifier.csprojResolveAssemblyReference.cache
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\obj\Debug\DumpertNotifier.DNForm.resources
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\obj\Debug\DumpertNotifier.Properties.Resources.resources
+C:\Users\Sjoerd\Documents\GitHub\Dumpert-Notifier\DumpertNotifier\DumpertNotifier\obj\Debug\DumpertNotifier.csproj.GenerateResource.Cache

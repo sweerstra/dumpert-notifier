@@ -21,7 +21,7 @@ namespace DumpertNotifier
                     MessageBox.Show(@"Instance already running");
                     return;
                 }
-                Application.Run(new Form1());
+                Application.Run(new DNForm());
             }
         }
         private const string AppGuid = "c0a76b5a-12ab-45c5-b9d9-d693faa6e7b9";
