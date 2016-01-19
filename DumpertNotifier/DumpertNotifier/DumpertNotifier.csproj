@@ -81,6 +81,7 @@
     <Content Include="dumpert-favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\rotop2.ico" />
     <None Include="Resources\cross.ico" />
     <None Include="Resources\kudo.ico" />
     <None Include="Resources\refresh.ico" />

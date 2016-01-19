@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Windows.Forms;
@@ -12,13 +13,22 @@ namespace DumpertNotifier
         private readonly Uri _rssFeed = new Uri("http://www.dumpert.nl/rss.xml.php");
         private DateTime _startTime = DateTime.Now;
 
+        private const int CpNocloseButton = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CpNocloseButton;
+                return myCp;
+            }
+        }
+
         public DNForm()
         {
             InitializeComponent();
-
-            // add items ranging [10, 60] and update selected index
-            for (var i = 1; i <= 6; i++) _refreshComboBox.Items.Add(i*10);
-            _refreshComboBox.SelectedIndex = 0;
+            cbRefresh.SelectedIndex = 0;
+            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
@@ -65,7 +75,7 @@ namespace DumpertNotifier
             if (lastUpdated <= _startTime) return;
 
             _startTime = lastUpdated;
-            _notifyIcon.ShowBalloonTip(5000, "New item!",
+            _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
                 string.Format("{0}\n{1}\n{2}", lastItem.Title.Text, lastItem.Summary.Text,
                     lastUpdated.ToShortTimeString()), ToolTipIcon.Info);
         }
@@ -79,12 +89,24 @@ namespace DumpertNotifier
 
         private void quitMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            Close();      
         }
 
-        private void _refreshComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void settingsMenuItem_Click(object sender, EventArgs e)
         {
-            _timer.Interval = (int) _refreshComboBox.SelectedItem*1000;
+            Show();
+            WindowState = FormWindowState.Normal;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            Hide();
+            _timer.Interval = Convert.ToInt32(cbRefresh.SelectedItem)*1000;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Hide();
         }
     }
 }
