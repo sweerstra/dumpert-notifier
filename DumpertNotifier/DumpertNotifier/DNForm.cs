@@ -33,8 +33,7 @@ namespace DumpertNotifier
 
         private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
-            var dumpert = new Uri("http://www.dumpert.nl/");
-            Process.Start(GetSource(_rssFeed, dumpert));
+            Process.Start((GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString());
         }
 
         public static SyndicationFeed GetFeed(Uri uri)
@@ -60,12 +59,16 @@ namespace DumpertNotifier
             }
         }
 
-        private static string GetSource(Uri feedUri, Uri standard)
+        /// <summary>
+        ///     Parses the RSS feed located at the specified Uri and returns the first available Uri or null if no valid Uri are
+        ///     found
+        /// </summary>
+        private static Uri GetFirstItemFromFeed(Uri feedUri)
         {
-            var feed = GetFeed(feedUri);
-            var first = feed.Items.FirstOrDefault();
-            if (first == null || first.Links.Count <= 0) return standard.AbsoluteUri;
-            return first.Links.First().Uri.ToString();
+            return GetFeed(feedUri).Items
+                .SelectMany(item => item.Links) // take all urls from all items
+                .Select(link => link.Uri) // convert the SyndicationLink's to Uri's
+                .FirstOrDefault(); // return the first or null
         }
 
         private void _timer_Tick(object sender, EventArgs e)
