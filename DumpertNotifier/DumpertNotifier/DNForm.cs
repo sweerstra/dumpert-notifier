@@ -11,6 +11,7 @@ namespace DumpertNotifier
     public partial class DNForm : Form
     {
         private readonly Uri _rssFeed = new Uri("http://www.dumpert.nl/rss.xml.php");
+        private readonly Uri _homepage = new Uri("http://www.dumpert.nl");
         private DateTime _startTime = DateTime.Now;
 
         private const int CpNocloseButton = 0x200;
