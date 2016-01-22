@@ -63,20 +63,10 @@ namespace DumpertNotifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cross {
+        internal static System.Drawing.Bitmap film {
             get {
-                object obj = ResourceManager.GetObject("cross", resourceCulture);
+                object obj = ResourceManager.GetObject("film", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon kudo {
-            get {
-                object obj = ResourceManager.GetObject("kudo", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -93,10 +83,20 @@ namespace DumpertNotifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rotop2 {
+        internal static System.Drawing.Bitmap rotop {
             get {
-                object obj = ResourceManager.GetObject("rotop2", resourceCulture);
+                object obj = ResourceManager.GetObject("rotop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon stats {
+            get {
+                object obj = ResourceManager.GetObject("stats", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

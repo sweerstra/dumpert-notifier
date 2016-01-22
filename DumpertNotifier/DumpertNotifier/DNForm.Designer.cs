@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbRefresh = new System.Windows.Forms.ComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.filmpjesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,10 +62,11 @@
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.instellingenToolStripMenuItem,
+            this.filmpjesToolStripMenuItem,
             this.toolStripSeparator1,
             this.rotOpToolStripMenuItem});
             this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(153, 76);
+            this.contextMenu.Size = new System.Drawing.Size(153, 98);
             // 
             // instellingenToolStripMenuItem
             // 
@@ -81,7 +83,7 @@
             // 
             // rotOpToolStripMenuItem
             // 
-            this.rotOpToolStripMenuItem.Image = global::DumpertNotifier.Properties.Resources.rotop2;
+            this.rotOpToolStripMenuItem.Image = global::DumpertNotifier.Properties.Resources.rotop;
             this.rotOpToolStripMenuItem.Name = "rotOpToolStripMenuItem";
             this.rotOpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rotOpToolStripMenuItem.Text = "Rot op";
@@ -133,6 +135,13 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // filmpjesToolStripMenuItem
+            // 
+            this.filmpjesToolStripMenuItem.Image = global::DumpertNotifier.Properties.Resources.film;
+            this.filmpjesToolStripMenuItem.Name = "filmpjesToolStripMenuItem";
+            this.filmpjesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filmpjesToolStripMenuItem.Text = "Filmpjes";
+            // 
             // DNForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -169,6 +178,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbRefresh;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ToolStripMenuItem filmpjesToolStripMenuItem;
     }
 }
 
