@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.ServiceModel.Syndication;
 using System.Windows.Forms;
 using System.Xml;
-using HtmlAgilityPack;
 
 namespace DumpertNotifier
 {
     public partial class DNForm : Form
     {
-        private readonly Uri _rssFeed = new Uri("http://www.dumpert.nl/rss.xml.php");
         private readonly Uri _homepage = new Uri("http://www.dumpert.nl");
+        private readonly Uri _rssFeed = new Uri("http://www.dumpert.nl/rss.xml.php");
         private DateTime _startTime = DateTime.Now;
 
         private const int CpNocloseButton = 0x200;
@@ -40,28 +35,10 @@ namespace DumpertNotifier
         {
             var first = (GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString();
             Process.Start(first);
-            var uri = new Uri(first);
-            var item = GetItemByLink(uri);
-            var stats = GetStats(uri);
-            var menuItem = new ToolStripMenuItem(item.Title.Text) { DropDownDirection = ToolStripDropDownDirection.AboveRight };
-            menuItem.DropDownItems.Add("Bekijk", new Bitmap(Properties.Resources.film), 
-                (o, args) => Process.Start(first));
-            menuItem.DropDownItems.Add("Statistieken", new Bitmap(Properties.Resources.stats.ToBitmap()),
-                (o, args) => MessageBox.Show(string.Format("Kudo's: {0}\n" + "Views: {1}", stats[0], stats[1])));
-            filmpjesToolStripMenuItem.DropDownItems.Add(menuItem);
-        }
-
-        public string[] GetStats(Uri uri)
-        {
-            var html = new HtmlAgilityPack.HtmlDocument();
-            html.LoadHtml(new WebClient().DownloadString(uri.AbsoluteUri));
-            var allElements = html.DocumentNode.SelectNodes("//*[contains(@class,'dump-amt')]");
-
-            var firstOrDefault = allElements.FirstOrDefault();
-            var lastOrDefault = allElements.LastOrDefault();
-            if (firstOrDefault != null && lastOrDefault != null)
-                return new[] {firstOrDefault.InnerText, lastOrDefault.InnerText};
-            return null;
+            
+            filmpjesToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(GetTitleByLink(new Uri(first)),
+                null, (o, args) => Process.Start(first)));
+            filmpjesToolStripMenuItem.Enabled = filmpjesToolStripMenuItem.HasDropDownItems;
         }
 
         public static SyndicationFeed GetFeed(Uri uri)
@@ -88,8 +65,8 @@ namespace DumpertNotifier
         }
 
         /// <summary>
-        ///     Parses the RSS feed located at the specified Uri and returns the first available Uri or null if no valid Uri are
-        ///     found
+        ///     Parses the RSS feed located at the specified Uri and returns
+        ///     the first available Uri or null if no valid Uri are found
         /// </summary>
         private static Uri GetFirstItemFromFeed(Uri feedUri)
         {
@@ -103,7 +80,7 @@ namespace DumpertNotifier
         {
             var lastItem = GetItem();
             var lastUpdated = lastItem.PublishDate.DateTime;
-            if (lastUpdated >= _startTime) return;
+            if (lastUpdated <= _startTime) return;
 
             _startTime = lastUpdated;
             _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
@@ -118,11 +95,11 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
-        public SyndicationItem GetItemByLink(Uri uri)
+        public string GetTitleByLink(Uri uri)
         {
-            return GetFeed(_rssFeed).Items
-                .FirstOrDefault(item => item.Links
-                .Any(link => link.Uri == uri));
+            return (from item in GetFeed(_rssFeed).Items
+                     where item.Links.Any(link => link.Uri == uri)
+                     select item.Title.Text).FirstOrDefault();
         }
 
         private void quitMenuItem_Click(object sender, EventArgs e)
@@ -145,6 +122,11 @@ namespace DumpertNotifier
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Hide();
+        }
+
+        private void _notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Process.Start((GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString());
         }
     }
 }

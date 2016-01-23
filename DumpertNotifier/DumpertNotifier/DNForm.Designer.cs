@@ -1,4 +1,6 @@
-﻿namespace DumpertNotifier
+﻿using System.Windows.Forms;
+
+namespace DumpertNotifier
 {
     partial class DNForm
     {
@@ -34,13 +36,13 @@
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.instellingenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filmpjesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.rotOpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbRefresh = new System.Windows.Forms.ComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.filmpjesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +58,7 @@
             this._notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("_notifyIcon.Icon")));
             this._notifyIcon.Visible = true;
             this._notifyIcon.BalloonTipClicked += new System.EventHandler(this._notifyIcon_BalloonTipClicked);
-            this._notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this._notifyIcon_BalloonTipClicked);
+            this._notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this._notifyIcon_MouseDoubleClick);
             // 
             // contextMenu
             // 
@@ -75,6 +77,14 @@
             this.instellingenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.instellingenToolStripMenuItem.Text = "Instellingen";
             this.instellingenToolStripMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
+            // 
+            // filmpjesToolStripMenuItem
+            // 
+            this.filmpjesToolStripMenuItem.Enabled = false;
+            this.filmpjesToolStripMenuItem.Image = global::DumpertNotifier.Properties.Resources.film;
+            this.filmpjesToolStripMenuItem.Name = "filmpjesToolStripMenuItem";
+            this.filmpjesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filmpjesToolStripMenuItem.Text = "Filmpjes";
             // 
             // toolStripSeparator1
             // 
@@ -134,13 +144,6 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // filmpjesToolStripMenuItem
-            // 
-            this.filmpjesToolStripMenuItem.Image = global::DumpertNotifier.Properties.Resources.film;
-            this.filmpjesToolStripMenuItem.Name = "filmpjesToolStripMenuItem";
-            this.filmpjesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.filmpjesToolStripMenuItem.Text = "Filmpjes";
             // 
             // DNForm
             // 
