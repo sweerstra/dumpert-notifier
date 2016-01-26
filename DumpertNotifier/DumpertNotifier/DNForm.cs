@@ -31,14 +31,23 @@ namespace DumpertNotifier
             StartPosition = FormStartPosition.CenterScreen;
         }
 
+        public bool Dialog()
+        {
+            var confirm = new Dialog();
+            var result = confirm.ShowDialog();
+            return result == DialogResult.Yes;
+        }
+
         private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
             var first = (GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString();
             Process.Start(first);
-            
-            filmpjesToolStripMenuItem.DropDownItems.Add(new ToolStripMenuItem(GetTitleByLink(new Uri(first)),
-                null, (o, args) => Process.Start(first)));
+            var item = new ToolStripMenuItem(GetTitleByLink(new Uri(first)), null, (o, args) => Process.Start(first));
+            if (Dialog())
+                item.Image = Properties.Resources.green_check.ToBitmap();
+            filmpjesToolStripMenuItem.DropDownItems.Add(item);
             filmpjesToolStripMenuItem.Enabled = filmpjesToolStripMenuItem.HasDropDownItems;
+            
         }
 
         public static SyndicationFeed GetFeed(Uri uri)
@@ -80,7 +89,7 @@ namespace DumpertNotifier
         {
             var lastItem = GetItem();
             var lastUpdated = lastItem.PublishDate.DateTime;
-            if (lastUpdated <= _startTime) return;
+            if (lastUpdated >= _startTime) return;
 
             _startTime = lastUpdated;
             _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
