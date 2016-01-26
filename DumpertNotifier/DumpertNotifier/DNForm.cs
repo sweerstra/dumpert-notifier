@@ -31,7 +31,8 @@ namespace DumpertNotifier
             StartPosition = FormStartPosition.CenterScreen;
         }
 
-        public bool Dialog()
+        //geef aan of je een comment hebt geplaatst
+        public bool NewCommentDialog()
         {
             var confirm = new Dialog();
             var result = confirm.ShowDialog();
@@ -43,7 +44,7 @@ namespace DumpertNotifier
             var first = (GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString();
             Process.Start(first);
             var item = new ToolStripMenuItem(GetTitleByLink(new Uri(first)), null, (o, args) => Process.Start(first));
-            if (Dialog())
+            if (NewCommentDialog())
                 item.Image = Properties.Resources.green_check.ToBitmap();
             filmpjesToolStripMenuItem.DropDownItems.Add(item);
             filmpjesToolStripMenuItem.Enabled = filmpjesToolStripMenuItem.HasDropDownItems;
@@ -89,7 +90,7 @@ namespace DumpertNotifier
         {
             var lastItem = GetItem();
             var lastUpdated = lastItem.PublishDate.DateTime;
-            if (lastUpdated >= _startTime) return;
+            if (lastUpdated <= _startTime) return;
 
             _startTime = lastUpdated;
             _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
