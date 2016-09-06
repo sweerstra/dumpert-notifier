@@ -34,15 +34,12 @@ namespace DumpertNotifier
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DNForm));
             this._timer = new System.Windows.Forms.Timer(this.components);
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.instellingenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.filmpjesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.rotOpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbRefresh = new System.Windows.Forms.ComboBox();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.rotOpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,45 +56,6 @@ namespace DumpertNotifier
             this._notifyIcon.Visible = true;
             this._notifyIcon.BalloonTipClicked += new System.EventHandler(this._notifyIcon_BalloonTipClicked);
             this._notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this._notifyIcon_MouseDoubleClick);
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.instellingenToolStripMenuItem,
-            this.filmpjesToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.rotOpToolStripMenuItem});
-            this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(153, 98);
-            // 
-            // instellingenToolStripMenuItem
-            // 
-            this.instellingenToolStripMenuItem.Image = global::DumpertNotifier.Properties.Resources.preferences;
-            this.instellingenToolStripMenuItem.Name = "instellingenToolStripMenuItem";
-            this.instellingenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.instellingenToolStripMenuItem.Text = "Instellingen";
-            this.instellingenToolStripMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
-            // 
-            // filmpjesToolStripMenuItem
-            // 
-            this.filmpjesToolStripMenuItem.Enabled = false;
-            this.filmpjesToolStripMenuItem.Image = global::DumpertNotifier.Properties.Resources.film;
-            this.filmpjesToolStripMenuItem.Name = "filmpjesToolStripMenuItem";
-            this.filmpjesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.filmpjesToolStripMenuItem.Text = "Filmpjes";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // rotOpToolStripMenuItem
-            // 
-            this.rotOpToolStripMenuItem.Image = global::DumpertNotifier.Properties.Resources.rotop;
-            this.rotOpToolStripMenuItem.Name = "rotOpToolStripMenuItem";
-            this.rotOpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rotOpToolStripMenuItem.Text = "Rot op";
-            this.rotOpToolStripMenuItem.Click += new System.EventHandler(this.quitMenuItem_Click);
             // 
             // btnOk
             // 
@@ -145,6 +103,20 @@ namespace DumpertNotifier
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // rotOpToolStripMenuItem
+            // 
+            this.rotOpToolStripMenuItem.Name = "rotOpToolStripMenuItem";
+            this.rotOpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rotOpToolStripMenuItem.Text = "Rot op";
+            this.rotOpToolStripMenuItem.Click += new System.EventHandler(this.quitMenuItem_Click);
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rotOpToolStripMenuItem});
+            this.contextMenu.Name = "contextMenuStrip1";
+            this.contextMenu.Size = new System.Drawing.Size(153, 48);
+            // 
             // DNForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -173,15 +145,12 @@ namespace DumpertNotifier
 
         private System.Windows.Forms.Timer _timer;
         private System.Windows.Forms.NotifyIcon _notifyIcon;
-        private System.Windows.Forms.ContextMenuStrip contextMenu;
-        private System.Windows.Forms.ToolStripMenuItem instellingenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem rotOpToolStripMenuItem;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbRefresh;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.ToolStripMenuItem filmpjesToolStripMenuItem;
+        private ContextMenuStrip contextMenu;
+        private ToolStripMenuItem rotOpToolStripMenuItem;
     }
 }
 

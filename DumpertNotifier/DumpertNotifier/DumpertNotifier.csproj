@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0793C906-5453-4812-B24F-513E134DF50E}</ProjectGuid>
+    <ProjectGuid>{F0483C05-778A-4491-86E0-24F667572D61}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DumpertNotifier</RootNamespace>
@@ -47,12 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialog.Designer.cs">
-      <DependentUpon>Dialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="DNForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,9 +55,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Dialog.resx">
-      <DependentUpon>Dialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DNForm.resx">
       <DependentUpon>DNForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,11 +85,9 @@
     <Content Include="dumpert-favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\green_check.ico" />
-    <None Include="Resources\stats.ico" />
-    <None Include="Resources\film.ico" />
-    <None Include="Resources\rotop.ico" />
-    <None Include="Resources\preferences.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

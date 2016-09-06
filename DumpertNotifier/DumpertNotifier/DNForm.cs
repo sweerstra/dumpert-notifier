@@ -9,11 +9,18 @@ namespace DumpertNotifier
 {
     public partial class DNForm : Form
     {
+        private const int CpNocloseButton = 0x200;
         private readonly Uri _homepage = new Uri("http://www.dumpert.nl");
         private readonly Uri _rssFeed = new Uri("http://www.dumpert.nl/rss.xml.php");
         private DateTime _startTime = DateTime.Now;
 
-        private const int CpNocloseButton = 0x200;
+        public DNForm()
+        {
+            InitializeComponent();
+            cbRefresh.SelectedIndex = 0;
+            StartPosition = FormStartPosition.CenterScreen;
+        }
+
         protected override CreateParams CreateParams
         {
             get
@@ -24,31 +31,11 @@ namespace DumpertNotifier
             }
         }
 
-        public DNForm()
-        {
-            InitializeComponent();
-            cbRefresh.SelectedIndex = 0;
-            StartPosition = FormStartPosition.CenterScreen;
-        }
-
-        //geef aan of je een comment hebt geplaatst
-        public bool NewCommentDialog()
-        {
-            var confirm = new Dialog();
-            var result = confirm.ShowDialog();
-            return result == DialogResult.Yes;
-        }
-
         private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
             var first = (GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString();
             Process.Start(first);
             var item = new ToolStripMenuItem(GetTitleByLink(new Uri(first)), null, (o, args) => Process.Start(first));
-            if (NewCommentDialog())
-                item.Image = Properties.Resources.green_check.ToBitmap();
-            filmpjesToolStripMenuItem.DropDownItems.Add(item);
-            filmpjesToolStripMenuItem.Enabled = filmpjesToolStripMenuItem.HasDropDownItems;
-            
         }
 
         public static SyndicationFeed GetFeed(Uri uri)
@@ -108,13 +95,13 @@ namespace DumpertNotifier
         public string GetTitleByLink(Uri uri)
         {
             return (from item in GetFeed(_rssFeed).Items
-                     where item.Links.Any(link => link.Uri == uri)
-                     select item.Title.Text).FirstOrDefault();
+                where item.Links.Any(link => link.Uri == uri)
+                select item.Title.Text).FirstOrDefault();
         }
 
         private void quitMenuItem_Click(object sender, EventArgs e)
         {
-            Close();      
+            Close();
         }
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
