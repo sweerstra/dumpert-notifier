@@ -7,7 +7,7 @@ namespace DumpertNotifier
 {
     public class FeedManager
     {
-        private static readonly Uri RssFeedUrl = new Uri("http://www.dumpert.nl/rss.xml.php");
+        public readonly Uri RssFeedUrl = new Uri("http://www.dumpert.nl/rss.xml.php");
 
         //Returns the first available Uri from a item or null if no valid Uri was found
         public Uri GetFirstUrl()
@@ -26,7 +26,7 @@ namespace DumpertNotifier
         }
 
         //Reads the feed from url and returns it, else spoof
-        private static SyndicationFeed GetFeed(Uri uri)
+        public SyndicationFeed GetFeed(Uri uri)
         {
             try
             {

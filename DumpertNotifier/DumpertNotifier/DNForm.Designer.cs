@@ -35,7 +35,7 @@ namespace DumpertNotifier
             this._timer = new System.Windows.Forms.Timer(this.components);
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.rotOpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,22 +55,22 @@ namespace DumpertNotifier
             // contextMenu
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rotOpToolStripMenuItem});
+            this.quitToolStripItem});
             this.contextMenu.Name = "contextMenuStrip1";
             this.contextMenu.Size = new System.Drawing.Size(153, 48);
             // 
-            // rotOpToolStripMenuItem
+            // quitToolStripItem
             // 
-            this.rotOpToolStripMenuItem.Name = "rotOpToolStripMenuItem";
-            this.rotOpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rotOpToolStripMenuItem.Text = "Quit";
-            this.rotOpToolStripMenuItem.Click += new System.EventHandler(this.quitMenuItem_Click);
+            this.quitToolStripItem.Name = "quitToolStripItem";
+            this.quitToolStripItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripItem.Text = "Quit";
+            this.quitToolStripItem.Click += new System.EventHandler(this.quitMenuItem_Click);
             // 
             // DnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(198, 59);
+            this.ClientSize = new System.Drawing.Size(143, 57);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -88,7 +88,7 @@ namespace DumpertNotifier
         private System.Windows.Forms.Timer _timer;
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private ContextMenuStrip contextMenu;
-        private ToolStripMenuItem rotOpToolStripMenuItem;
+        private ToolStripMenuItem quitToolStripItem;
     }
 }
 

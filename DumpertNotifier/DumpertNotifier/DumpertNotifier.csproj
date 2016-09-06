@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0483C05-778A-4491-86E0-24F667572D61}</ProjectGuid>
+    <ProjectGuid>{0793C906-5453-4812-B24F-513E134DF50E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DumpertNotifier</RootNamespace>

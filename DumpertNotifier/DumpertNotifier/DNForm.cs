@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using System.ServiceModel.Syndication;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace DumpertNotifier
 {
@@ -19,13 +16,13 @@ namespace DumpertNotifier
             InitializeComponent();
         }
 
-        //On balloon tip click, start default browser with new item link
+        //Start default browser using new item link
         private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
             Process.Start((_manager.GetFirstUrl() ?? _homepage).ToString());
         }
 
-        //Every 10 seconds, if item has a new publish date, show a balloon tip with information
+        //Shows a balloon tip with information when a new item arrives
         private void _timer_Tick(object sender, EventArgs e)
         {
             var item = _manager.GetFirstItemFromFeed();
