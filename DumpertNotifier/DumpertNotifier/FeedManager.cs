@@ -9,7 +9,7 @@ namespace DumpertNotifier
     {
         public readonly Uri RssFeedUrl = new Uri("http://www.dumpert.nl/rss.xml.php");
 
-        //Returns the first available Uri from a item or null if no valid Uri was found
+        //Returns the first available Uri from an item or null if no valid Uri was found
         public Uri GetFirstUrl()
         {
             return GetFirstItemFromFeed().Links
@@ -25,7 +25,7 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
-        //Reads the feed from url and returns it, else spoof
+        //Loads feed from url and returns it, else spoof
         public SyndicationFeed GetFeed(Uri uri)
         {
             try

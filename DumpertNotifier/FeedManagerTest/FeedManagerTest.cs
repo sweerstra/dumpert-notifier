@@ -17,7 +17,7 @@ namespace ApplicationTest
             var url = _manager.GetFirstUrl();
             var correctUrl = url.AbsoluteUri.Contains("dumpert.nl/mediabase");
             Assert.IsNotNull(url);
-            Assert.That(correctUrl, "Url was invalid and won't to redirect to video.");
+            Assert.That(correctUrl, "Url was invalid and won't redirect to video.");
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace ApplicationTest
         {
             var item = _manager.GetFirstItemFromFeed();
             Assert.IsNotNull(item.PublishDate);
-            Assert.That(item.PublishDate.DateTime < DateTime.Now, "DateTime was incorrectly formatted, can't be after the current time.");
+            Assert.That(item.PublishDate.DateTime < DateTime.Now, "DateTime was incorrectly formatted, item's publish date can't be after the current time.");
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace ApplicationTest
         public void NonexistingFeedUrl()
         {
             var exception = Assert.Catch(() => _manager.GetFeed(new Uri("www.invalidfeed.com")));
-            Assert.IsInstanceOf<UriFormatException>(exception, "Wrong Uri format wasn't handled correctly.");
+            Assert.IsInstanceOf<UriFormatException>(exception);
         }
     }
 }
