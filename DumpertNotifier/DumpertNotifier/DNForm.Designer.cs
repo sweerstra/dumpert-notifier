@@ -34,10 +34,6 @@ namespace DumpertNotifier
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DNForm));
             this._timer = new System.Windows.Forms.Timer(this.components);
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.btnOk = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbRefresh = new System.Windows.Forms.ComboBox();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.rotOpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenu.SuspendLayout();
@@ -57,52 +53,6 @@ namespace DumpertNotifier
             this._notifyIcon.BalloonTipClicked += new System.EventHandler(this._notifyIcon_BalloonTipClicked);
             this._notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this._notifyIcon_MouseDoubleClick);
             // 
-            // btnOk
-            // 
-            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOk.Location = new System.Drawing.Point(107, 42);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(47, 23);
-            this.btnOk.TabIndex = 7;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Aantal seconden";
-            // 
-            // cbRefresh
-            // 
-            this.cbRefresh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRefresh.FormattingEnabled = true;
-            this.cbRefresh.Items.AddRange(new object[] {
-            "10",
-            "20",
-            "30",
-            "40",
-            "50",
-            "60"});
-            this.cbRefresh.Location = new System.Drawing.Point(17, 43);
-            this.cbRefresh.Name = "cbRefresh";
-            this.cbRefresh.Size = new System.Drawing.Size(84, 21);
-            this.cbRefresh.TabIndex = 5;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(160, 42);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(58, 23);
-            this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // rotOpToolStripMenuItem
             // 
             this.rotOpToolStripMenuItem.Name = "rotOpToolStripMenuItem";
@@ -115,29 +65,22 @@ namespace DumpertNotifier
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rotOpToolStripMenuItem});
             this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(153, 48);
+            this.contextMenu.Size = new System.Drawing.Size(110, 26);
             // 
             // DNForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnOk;
-            this.ClientSize = new System.Drawing.Size(230, 81);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbRefresh);
+            this.ClientSize = new System.Drawing.Size(198, 59);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "DNForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Instellingen";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -145,10 +88,6 @@ namespace DumpertNotifier
 
         private System.Windows.Forms.Timer _timer;
         private System.Windows.Forms.NotifyIcon _notifyIcon;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbRefresh;
-        private System.Windows.Forms.Button btnCancel;
         private ContextMenuStrip contextMenu;
         private ToolStripMenuItem rotOpToolStripMenuItem;
     }

@@ -17,7 +17,6 @@ namespace DumpertNotifier
         public DNForm()
         {
             InitializeComponent();
-            cbRefresh.SelectedIndex = 0;
             StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -102,12 +101,6 @@ namespace DumpertNotifier
         private void quitMenuItem_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void settingsMenuItem_Click(object sender, EventArgs e)
-        {
-            Show();
-            WindowState = FormWindowState.Normal;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
