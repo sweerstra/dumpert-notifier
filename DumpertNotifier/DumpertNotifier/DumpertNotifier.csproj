@@ -53,6 +53,7 @@
     <Compile Include="DNForm.Designer.cs">
       <DependentUpon>DNForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FeedManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DNForm.resx">

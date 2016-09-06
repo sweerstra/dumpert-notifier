@@ -2,7 +2,7 @@
 
 namespace DumpertNotifier
 {
-    partial class DNForm
+    partial class DnForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace DumpertNotifier
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DNForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DnForm));
             this._timer = new System.Windows.Forms.Timer(this.components);
             this._notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -57,16 +57,16 @@ namespace DumpertNotifier
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rotOpToolStripMenuItem});
             this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(110, 26);
+            this.contextMenu.Size = new System.Drawing.Size(153, 48);
             // 
             // rotOpToolStripMenuItem
             // 
             this.rotOpToolStripMenuItem.Name = "rotOpToolStripMenuItem";
-            this.rotOpToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.rotOpToolStripMenuItem.Text = "Rot op";
+            this.rotOpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rotOpToolStripMenuItem.Text = "Quit";
             this.rotOpToolStripMenuItem.Click += new System.EventHandler(this.quitMenuItem_Click);
             // 
-            // DNForm
+            // DnForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -74,7 +74,7 @@ namespace DumpertNotifier
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "DNForm";
+            this.Name = "DnForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
