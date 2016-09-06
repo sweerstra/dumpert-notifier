@@ -9,7 +9,6 @@ namespace DumpertNotifier
 {
     public partial class DNForm : Form
     {
-        private const int CpNocloseButton = 0x200;
         private readonly Uri _homepage = new Uri("http://www.dumpert.nl");
         private readonly Uri _rssFeed = new Uri("http://www.dumpert.nl/rss.xml.php");
         private DateTime _startTime = DateTime.Now;
@@ -17,24 +16,11 @@ namespace DumpertNotifier
         public DNForm()
         {
             InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen;
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                var myCp = base.CreateParams;
-                myCp.ClassStyle = myCp.ClassStyle | CpNocloseButton;
-                return myCp;
-            }
         }
 
         private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
-            var first = (GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString();
-            Process.Start(first);
-            var item = new ToolStripMenuItem(GetTitleByLink(new Uri(first)), null, (o, args) => Process.Start(first));
+            Process.Start((GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString());
         }
 
         public static SyndicationFeed GetFeed(Uri uri)
@@ -91,32 +77,9 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
-        public string GetTitleByLink(Uri uri)
-        {
-            return (from item in GetFeed(_rssFeed).Items
-                where item.Links.Any(link => link.Uri == uri)
-                select item.Title.Text).FirstOrDefault();
-        }
-
         private void quitMenuItem_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            Hide();
-            _timer.Interval = Convert.ToInt32(cbRefresh.SelectedItem)*1000;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Hide();
-        }
-
-        private void _notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Process.Start((GetFirstItemFromFeed(_rssFeed) ?? _homepage).ToString());
         }
     }
 }
