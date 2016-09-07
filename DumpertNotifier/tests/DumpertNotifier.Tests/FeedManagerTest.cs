@@ -1,10 +1,9 @@
 ﻿using System;
-using DumpertNotifier;
-using NUnit.Framework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
 
-namespace ApplicationTest
+namespace DumpertNotifier.Tests
 {
     [TestClass]
     public class FeedManagerTest
@@ -25,7 +24,8 @@ namespace ApplicationTest
         {
             var item = _manager.GetFirstItemFromFeed();
             Assert.IsNotNull(item.PublishDate);
-            Assert.That(item.PublishDate.DateTime < DateTime.Now, "DateTime was incorrectly formatted, item's publish date can't be after the current time.");
+            Assert.That(item.PublishDate.DateTime < DateTime.Now,
+                "DateTime was incorrectly formatted, item's publish date can't be after the current time.");
         }
 
         [Test]

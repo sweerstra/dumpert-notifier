@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpertNotifier", "DumpertNotifier\DumpertNotifier.csproj", "{0793C906-5453-4812-B24F-513E134DF50E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpertNotifier", "src\DumpertNotifier\DumpertNotifier.csproj", "{0793C906-5453-4812-B24F-513E134DF50E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationTest", "FeedManagerTest\ApplicationTest.csproj", "{CD84062A-4B3D-4F8D-BAD5-062EABBC5155}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DumpertNotifier.Tests", "tests\DumpertNotifier.Tests\DumpertNotifier.Tests.csproj", "{CD84062A-4B3D-4F8D-BAD5-062EABBC5155}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
