@@ -17,7 +17,7 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
-        //Returns the latest syndication item
+        //Returns the latest item from the feed
         public SyndicationItem GetFirstItemFromFeed()
         {
             return GetFeed(RssFeedUrl).Items

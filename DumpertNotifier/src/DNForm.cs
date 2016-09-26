@@ -16,7 +16,7 @@ namespace DumpertNotifier
             InitializeComponent();
         }
 
-        //Start default browser using new item link
+        //Start default browser using the latest item from the feed, go to Dumpert homepage if not available
         private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
             Process.Start((_manager.GetFirstUrl() ?? _homepage).ToString());
@@ -26,27 +26,31 @@ namespace DumpertNotifier
         private void _timer_Tick(object sender, EventArgs e)
         {
             var item = _manager.GetFirstItemFromFeed();
-            if (item != null)
-            {
-                var lastUpdated = item.PublishDate.DateTime;
-                if (lastUpdated <= _startTime) return;
 
-                _startTime = lastUpdated;
-                _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
-                    string.Format("{0}\n{1}\n{2}", item.Title.Text, item.Summary.Text,
-                        lastUpdated.ToShortTimeString()), ToolTipIcon.Info);
-            }
-            else
+            if (item == null)
             {
-                ConnectionInterrupted();
+                ShowConnectionInterruptedAlert();
+                return;
+            }
+
+            var lastUpdated = item.PublishDate.DateTime;
+
+            if (lastUpdated <= _startTime)
+            {
+                _startTime = lastUpdated;
+
+                _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
+                    string.Format("{0}\n{1}\n{2}", item.Title.Text, item.Summary.Text, lastUpdated.ToShortTimeString()),
+                    ToolTipIcon.Info);
             }
         }
 
-        private void ConnectionInterrupted()
+        private void ShowConnectionInterruptedAlert()
         {
             _notifyIcon.ShowBalloonTip(8000, "Verbinding verbroken!",
                 "Dumpert Notifier heeft geen internet verbinding kunnen vinden. Probeer opnieuw verbinding te maken en herstart de applicatie.",
                 ToolTipIcon.Error);
+
             Close();
         }
 
