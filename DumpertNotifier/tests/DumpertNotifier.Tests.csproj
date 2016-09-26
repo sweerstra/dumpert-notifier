@@ -58,7 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DumpertNotifier\DumpertNotifier.csproj">
+    <ProjectReference Include="..\src\DumpertNotifier.csproj">
       <Project>{0793C906-5453-4812-B24F-513E134DF50E}</Project>
       <Name>DumpertNotifier</Name>
     </ProjectReference>
