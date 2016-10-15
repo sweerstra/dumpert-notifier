@@ -26,7 +26,6 @@ namespace DumpertNotifier
         private void _timer_Tick(object sender, EventArgs e)
         {
             var item = _manager.GetFirstItemFromFeed();
-
             if (item == null)
             {
                 ShowConnectionInterruptedAlert();
@@ -34,15 +33,12 @@ namespace DumpertNotifier
             }
 
             var lastUpdated = item.PublishDate.DateTime;
+            if (lastUpdated > _startTime) return;
+            _startTime = lastUpdated;
 
-            if (lastUpdated <= _startTime)
-            {
-                _startTime = lastUpdated;
-
-                _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
-                    string.Format("{0}\n{1}\n{2}", item.Title.Text, item.Summary.Text, lastUpdated.ToShortTimeString()),
-                    ToolTipIcon.Info);
-            }
+            _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
+                string.Format("{0}\n{1}\n{2}", item.Title.Text, item.Summary.Text, lastUpdated.ToShortTimeString()),
+                ToolTipIcon.Info);
         }
 
         private void ShowConnectionInterruptedAlert()
