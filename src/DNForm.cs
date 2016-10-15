@@ -33,7 +33,7 @@ namespace DumpertNotifier
             }
 
             var lastUpdated = item.PublishDate.DateTime;
-            if (lastUpdated > _startTime) return;
+            if (lastUpdated < _startTime) return;
             _startTime = lastUpdated;
 
             _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
