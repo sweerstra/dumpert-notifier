@@ -16,6 +16,12 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
+        public int GetNewItemAmount(DateTime currentTime)
+        {
+            return GetFeed(RssFeedUrl).Items
+                .Count(item => item.PublishDate.DateTime > currentTime);
+        }
+
         public SyndicationItem GetFirstItemFromFeed()
         {
             return GetFeed(RssFeedUrl).Items
