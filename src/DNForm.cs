@@ -16,13 +16,11 @@ namespace DumpertNotifier
             InitializeComponent();
         }
 
-        //Start default browser using the latest item from the feed, go to Dumpert homepage if not available
         private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
             Process.Start((_manager.GetFirstUrl() ?? _homepage).ToString());
         }
 
-        //Shows a balloon tip with information when a new item arrives
         private void _timer_Tick(object sender, EventArgs e)
         {
             var item = _manager.GetFirstItemFromFeed();
@@ -37,7 +35,7 @@ namespace DumpertNotifier
             _startTime = lastUpdated;
 
             _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
-                string.Format("{0}\n{1}\n{2}", item.Title.Text, item.Summary.Text, lastUpdated.ToShortTimeString()),
+                $"{item.Title.Text}\n{item.Summary.Text}\n{lastUpdated.ToShortTimeString()}",
                 ToolTipIcon.Info);
         }
 
