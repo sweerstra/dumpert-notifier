@@ -36,9 +36,12 @@ namespace DumpertNotifier
             var lastUpdated = item.PublishDate.DateTime;
             if (lastUpdated <= _startTime) return;
 
+            var amount = _manager.GetNewItemAmount(_startTime);
+
             _startTime = lastUpdated;
-            _notifyIcon.ShowBalloonTip(5000, "Nieuw filmpje!",
-                $"{item.Title.Text}\n{item.Summary.Text}\n{lastUpdated.ToShortTimeString()}",
+
+            _notifyIcon.ShowBalloonTip(5000, (amount == 1) ? "Nieuw filmpje!" : $"{amount} nieuwe filmpjes!",
+                $"{item.Title.Text}\n{item.Summary.Text}\n{_startTime.ToShortTimeString()}",
                 ToolTipIcon.Info);
         }
 
