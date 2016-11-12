@@ -37,6 +37,7 @@ namespace DumpertNotifier
             _notifyIcon.ShowBalloonTip(5000, (count == 1) ? "Nieuw filmpje!" : $"{count} nieuwe filmpjes!",
                 $"{first.Title.Text}\n{first.Summary.Text}\n{_startTime.ToShortTimeString()}",
                 ToolTipIcon.Info);
+            _notifyIcon.Text = $@"Laatste filmpje: {_startTime.ToShortTimeString()}";
         }
 
         private void quitMenuItem_Click(object sender, EventArgs e)
