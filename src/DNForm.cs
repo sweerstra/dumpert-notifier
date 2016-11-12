@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DumpertNotifier
@@ -23,25 +24,16 @@ namespace DumpertNotifier
 
         private void _timer_Tick(object sender, EventArgs e)
         {
-            var item = _manager.GetFirstItemFromFeed();
-            if (item == null)
-            {
-                _notifyIcon.ShowBalloonTip(8000, "Verbinding verbroken!",
-                    "Dumpert Notifier heeft geen internet verbinding kunnen vinden. Probeer opnieuw verbinding te maken en herstart de applicatie.",
-                    ToolTipIcon.Error);
-                Close();
-                return;
-            }
+            var items = _manager.GetNewItems(_startTime);
+            var count = items.Count;
 
-            var lastUpdated = item.PublishDate.DateTime;
-            if (lastUpdated <= _startTime) return;
+            if (count == 0) return;
 
-            var amount = _manager.GetNewItemAmount(_startTime);
+            var first = items.First();
+            _startTime = first.PublishDate.DateTime;
 
-            _startTime = lastUpdated;
-
-            _notifyIcon.ShowBalloonTip(5000, (amount == 1) ? "Nieuw filmpje!" : $"{amount} nieuwe filmpjes!",
-                $"{item.Title.Text}\n{item.Summary.Text}\n{_startTime.ToShortTimeString()}",
+            _notifyIcon.ShowBalloonTip(5000, (count == 1) ? "Nieuw filmpje!" : $"{count} nieuwe filmpjes!",
+                $"{first.Title.Text}\n{first.Summary.Text}\n{_startTime.ToShortTimeString()}",
                 ToolTipIcon.Info);
         }
 

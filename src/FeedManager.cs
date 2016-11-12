@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Xml;
@@ -16,10 +17,12 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
-        public int GetNewItemAmount(DateTime currentTime)
+        public List<SyndicationItem> GetNewItems(DateTime currentTime)
         {
             return GetFeed(RssFeedUrl).Items
-                .Count(item => item.PublishDate.DateTime > currentTime);
+                .OrderByDescending(date => date.PublishDate)
+                .Where(item => item.PublishDate.DateTime > currentTime)
+                .ToList();
         }
 
         public SyndicationItem GetFirstItemFromFeed()
