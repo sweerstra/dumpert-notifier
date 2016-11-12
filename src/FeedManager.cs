@@ -10,9 +10,9 @@ namespace DumpertNotifier
     {
         public readonly Uri RssFeedUrl = new Uri("http://www.dumpert.nl/rss.xml.php");
 
-        public Uri GetFirstUrl()
+        public Uri GetFirstUrlFromItem(SyndicationItem item)
         {
-            return GetFirstItemFromFeed().Links
+            return item.Links
                 .Select(link => link.Uri)
                 .FirstOrDefault();
         }
@@ -23,13 +23,6 @@ namespace DumpertNotifier
                 .OrderByDescending(date => date.PublishDate)
                 .Where(item => item.PublishDate.DateTime > currentTime)
                 .ToList();
-        }
-
-        public SyndicationItem GetFirstItemFromFeed()
-        {
-            return GetFeed(RssFeedUrl).Items
-                .OrderByDescending(date => date.PublishDate)
-                .FirstOrDefault();
         }
 
         public SyndicationFeed GetFeed(Uri uri)
