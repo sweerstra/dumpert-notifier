@@ -1,7 +1,6 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
-using Assert = NUnit.Framework.Assert;
 
 namespace DumpertNotifier.Tests
 {
@@ -10,36 +9,37 @@ namespace DumpertNotifier.Tests
     {
         private readonly FeedManager _manager = new FeedManager();
 
-        [Test]
-        public void ExistingAndValidUrl()
-        {
-            var url = _manager.GetFirstUrl();
-            var correctUrl = url.AbsoluteUri.Contains("dumpert.nl/mediabase");
-            Assert.IsNotNull(url);
-            Assert.That(correctUrl, "Url was invalid and won't redirect to video.");
-        }
-
-        [Test]
-        public void GetFirstItemFromValidFeed()
-        {
-            var item = _manager.GetFirstItemFromFeed();
-            Assert.IsNotNull(item.PublishDate);
-            Assert.That(item.PublishDate.DateTime < DateTime.Now,
-                "DateTime was incorrectly formatted, item's publish date can't be after the current time.");
-        }
-
-        [Test]
+        [TestMethod]
         public void GetFeedFromValidUrl()
         {
             var feed = _manager.GetFeed(_manager.RssFeedUrl);
             Assert.IsNotNull(feed.Items);
         }
 
-        [Test]
-        public void NonexistingFeedUrl()
+        [TestMethod]
+        public void GetItemsWithCorrectDateCheck()
         {
-            var exception = Assert.Catch(() => _manager.GetFeed(new Uri("www.invalidfeed.com")));
-            Assert.IsInstanceOf<UriFormatException>(exception);
+            var date = DateTime.Now.AddHours(-6);
+
+            var check = _manager.GetNewItems(date)
+                            .FirstOrDefault()
+                            ?.PublishDate.DateTime >= date;
+
+            Assert.IsTrue(check, "Time given can't be before the item's publish date.");
+        }
+
+        [TestMethod]
+        public void FeedHasExistingAndValidUrl()
+        {
+            var url = _manager.GetFirstUrlFromItem(
+                _manager.GetNewItems(DateTime.Now.AddDays(-1))
+                    .FirstOrDefault());
+
+            Assert.IsNotNull(url);
+
+            var isValidUrl = url.AbsoluteUri.Contains("dumpert.nl/mediabase");
+
+            Assert.IsTrue(isValidUrl, "Url was invalid and won't redirect to video.");
         }
     }
 }
