@@ -7,10 +7,9 @@ namespace DumpertNotifier
 {
     public partial class DnForm : Form
     {
-        private readonly Uri _homepage = new Uri("http://www.dumpert.nl");
         private readonly FeedManager _manager;
         private DateTime _startTime = DateTime.Now;
-        private Uri _notificationUrl;
+        private Uri _notificationUrl = new Uri("http://www.dumpert.nl");
 
         public DnForm()
         {
@@ -20,10 +19,10 @@ namespace DumpertNotifier
 
         private void notfier_BalloonTipClicked(object sender, EventArgs e)
         {
-            Process.Start((_notificationUrl ?? _homepage).ToString());
+            Process.Start(_notificationUrl.AbsoluteUri);
         }
 
-        private void _timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             var items = _manager.GetUpdatedItems(_startTime);
             var count = items.Count;
@@ -34,7 +33,7 @@ namespace DumpertNotifier
             _startTime = first.PublishDate.DateTime;
             _notificationUrl = _manager.GetFirstUrlFromItem(first);
 
-            notifier.ShowBalloonTip(5000, (count == 1) ? "Nieuw filmpje!" : $"{count} nieuwe filmpjes!",
+            notifier.ShowBalloonTip(5000, count == 1 ? "Nieuw filmpje!" : $"{count} nieuwe filmpjes!",
                 $"{first.Title.Text}\n{first.Summary.Text}\n{_startTime.ToShortTimeString()}",
                 ToolTipIcon.Info);
 

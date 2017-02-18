@@ -32,18 +32,18 @@ namespace DumpertNotifier
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DnForm));
-            this._timer = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.notifier = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.quitToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // _timer
+            // timer
             // 
-            this._timer.Enabled = true;
-            this._timer.Interval = 10000;
-            this._timer.Tick += new System.EventHandler(this._timer_Tick);
+            this.timer.Enabled = true;
+            this.timer.Interval = 10000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // notifier
             // 
@@ -57,12 +57,12 @@ namespace DumpertNotifier
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quitToolStripItem});
             this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(153, 48);
+            this.contextMenu.Size = new System.Drawing.Size(99, 26);
             // 
             // quitToolStripItem
             // 
             this.quitToolStripItem.Name = "quitToolStripItem";
-            this.quitToolStripItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripItem.Size = new System.Drawing.Size(98, 22);
             this.quitToolStripItem.Text = "Stop";
             this.quitToolStripItem.Click += new System.EventHandler(this.quitMenuItem_Click);
             // 
@@ -85,7 +85,7 @@ namespace DumpertNotifier
 
         #endregion
 
-        private System.Windows.Forms.Timer _timer;
+        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.NotifyIcon notifier;
         private ContextMenuStrip contextMenu;
         private ToolStripMenuItem quitToolStripItem;
