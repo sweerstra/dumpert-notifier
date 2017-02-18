@@ -50,7 +50,7 @@ namespace DumpertNotifier
             this.notifier.ContextMenuStrip = this.contextMenu;
             this.notifier.Icon = ((System.Drawing.Icon)(resources.GetObject("notifier.Icon")));
             this.notifier.Visible = true;
-            this.notifier.BalloonTipClicked += new System.EventHandler(this.notfier_BalloonTipClicked);
+            this.notifier.BalloonTipClicked += new System.EventHandler(this.notifier_BalloonTipClicked);
             // 
             // contextMenu
             // 

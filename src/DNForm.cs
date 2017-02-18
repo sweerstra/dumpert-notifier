@@ -8,8 +8,8 @@ namespace DumpertNotifier
     public partial class DnForm : Form
     {
         private readonly FeedManager _manager;
-        private DateTime _startTime = DateTime.Now;
-        private Uri _notificationUrl;
+        private DateTime _lastUpdate = DateTime.Now;
+        private Uri _navigationUrl;
 
         public DnForm()
         {
@@ -17,27 +17,27 @@ namespace DumpertNotifier
             InitializeComponent();
         }
 
-        private void notfier_BalloonTipClicked(object sender, EventArgs e)
+        private void notifier_BalloonTipClicked(object sender, EventArgs e)
         {
-            Process.Start(_notificationUrl.AbsoluteUri);
+            Process.Start(_navigationUrl.AbsoluteUri);
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            var items = _manager.GetUpdatedItems(_startTime);
+            var items = _manager.GetUpdatedItems(_lastUpdate);
             var count = items.Count;
 
             if (count == 0) return;
 
             var first = items.First();
-            _startTime = first.PublishDate.DateTime;
-            _notificationUrl = _manager.GetFirstUrlFromItem(first);
+            _lastUpdate = first.PublishDate.DateTime;
+            _navigationUrl = _manager.GetFirstUrlFromItem(first);
 
             notifier.ShowBalloonTip(5000, count == 1 ? "Nieuw filmpje!" : $"{count} nieuwe filmpjes!",
-                $"{first.Title.Text}\n{first.Summary.Text}\n{_startTime.ToShortTimeString()}",
+                $"{first.Title.Text}\n{first.Summary.Text}\n{_lastUpdate.ToShortTimeString()}",
                 ToolTipIcon.Info);
 
-            notifier.Text = $@"Laatste filmpje: {_startTime.ToShortTimeString()}";
+            notifier.Text = $@"Laatste filmpje: {_lastUpdate.ToShortTimeString()}";
         }
 
         private void quitMenuItem_Click(object sender, EventArgs e)

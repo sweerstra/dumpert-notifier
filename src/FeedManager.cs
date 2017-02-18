@@ -22,11 +22,11 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
-        public List<SyndicationItem> GetUpdatedItems(DateTime currentTime)
+        public List<SyndicationItem> GetUpdatedItems(DateTime lastUpdate)
         {
             return GetFeed().Items
                 .OrderByDescending(date => date.PublishDate)
-                .Where(item => item.PublishDate.DateTime > currentTime)
+                .Where(item => item.PublishDate.DateTime > lastUpdate)
                 .ToList();
         }
 
