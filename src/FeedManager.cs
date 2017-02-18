@@ -8,7 +8,12 @@ namespace DumpertNotifier
 {
     public class FeedManager
     {
-        public readonly Uri RssFeedUrl = new Uri("http://www.dumpert.nl/rss.xml.php");
+        public Uri Url { get; set; }
+
+        public FeedManager(Uri url)
+        {
+            Url = url;
+        }
 
         public Uri GetFirstUrlFromItem(SyndicationItem item)
         {
@@ -17,19 +22,19 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
-        public List<SyndicationItem> GetNewItems(DateTime currentTime)
+        public List<SyndicationItem> GetUpdatedItems(DateTime currentTime)
         {
-            return GetFeed(RssFeedUrl).Items
+            return GetFeed().Items
                 .OrderByDescending(date => date.PublishDate)
                 .Where(item => item.PublishDate.DateTime > currentTime)
                 .ToList();
         }
 
-        public SyndicationFeed GetFeed(Uri uri)
+        public SyndicationFeed GetFeed()
         {
             try
             {
-                return SyndicationFeed.Load(XmlReader.Create(uri.AbsoluteUri));
+                return SyndicationFeed.Load(XmlReader.Create(Url.AbsoluteUri));
             }
             catch (Exception)
             {

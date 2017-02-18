@@ -14,18 +14,18 @@ namespace DumpertNotifier
 
         public DnForm()
         {
-            _manager = new FeedManager();
+            _manager = new FeedManager(new Uri("http://www.dumpert.nl/rss.xml.php"));
             InitializeComponent();
         }
 
-        private void _notifyIcon_BalloonTipClicked(object sender, EventArgs e)
+        private void notfier_BalloonTipClicked(object sender, EventArgs e)
         {
             Process.Start((_notificationUrl ?? _homepage).ToString());
         }
 
         private void _timer_Tick(object sender, EventArgs e)
         {
-            var items = _manager.GetNewItems(_startTime);
+            var items = _manager.GetUpdatedItems(_startTime);
             var count = items.Count;
 
             if (count == 0) return;
@@ -34,10 +34,11 @@ namespace DumpertNotifier
             _startTime = first.PublishDate.DateTime;
             _notificationUrl = _manager.GetFirstUrlFromItem(first);
 
-            _notifyIcon.ShowBalloonTip(5000, (count == 1) ? "Nieuw filmpje!" : $"{count} nieuwe filmpjes!",
+            notifier.ShowBalloonTip(5000, (count == 1) ? "Nieuw filmpje!" : $"{count} nieuwe filmpjes!",
                 $"{first.Title.Text}\n{first.Summary.Text}\n{_startTime.ToShortTimeString()}",
                 ToolTipIcon.Info);
-            _notifyIcon.Text = $@"Laatste filmpje: {_startTime.ToShortTimeString()}";
+
+            notifier.Text = $@"Laatste filmpje: {_startTime.ToShortTimeString()}";
         }
 
         private void quitMenuItem_Click(object sender, EventArgs e)
