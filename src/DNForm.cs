@@ -9,7 +9,7 @@ namespace DumpertNotifier
     {
         private readonly FeedManager _manager;
         private DateTime _startTime = DateTime.Now;
-        private Uri _notificationUrl = new Uri("http://www.dumpert.nl");
+        private Uri _notificationUrl;
 
         public DnForm()
         {
