@@ -57,13 +57,13 @@ namespace DumpertNotifier
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quitToolStripItem});
             this.contextMenu.Name = "contextMenuStrip1";
-            this.contextMenu.Size = new System.Drawing.Size(99, 26);
+            this.contextMenu.Size = new System.Drawing.Size(153, 48);
             // 
             // quitToolStripItem
             // 
             this.quitToolStripItem.Name = "quitToolStripItem";
-            this.quitToolStripItem.Size = new System.Drawing.Size(98, 22);
-            this.quitToolStripItem.Text = "Stop";
+            this.quitToolStripItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripItem.Text = "Afsluiten";
             this.quitToolStripItem.Click += new System.EventHandler(this.quitMenuItem_Click);
             // 
             // DnForm

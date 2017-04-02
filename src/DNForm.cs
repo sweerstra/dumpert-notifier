@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Windows.Forms;
 
 namespace DumpertNotifier
@@ -24,12 +26,12 @@ namespace DumpertNotifier
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            var items = _manager.GetUpdatedItems(_lastUpdate);
-            var count = items.Count;
+            IEnumerable<SyndicationItem> items = _manager.GetUpdatedItems(_lastUpdate).ToList();
 
+            int count = items.Count();
             if (count == 0) return;
 
-            var first = items.First();
+            SyndicationItem first = items.First();
             _lastUpdate = first.PublishDate.DateTime;
             _navigationUrl = _manager.GetFirstUrlFromItem(first);
 

@@ -22,12 +22,11 @@ namespace DumpertNotifier
                 .FirstOrDefault();
         }
 
-        public List<SyndicationItem> GetUpdatedItems(DateTime lastUpdate)
+        public IEnumerable<SyndicationItem> GetUpdatedItems(DateTime lastUpdate)
         {
             return GetFeed().Items
                 .OrderByDescending(date => date.PublishDate)
-                .Where(item => item.PublishDate.DateTime > lastUpdate)
-                .ToList();
+                .Where(item => item.PublishDate.DateTime > lastUpdate);
         }
 
         public SyndicationFeed GetFeed()

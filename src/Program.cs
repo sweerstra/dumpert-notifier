@@ -16,7 +16,7 @@ namespace DumpertNotifier
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            using (var mutex = new Mutex(false, "Global\\" + AppGuid))
+            using (Mutex mutex = new Mutex(false, "Global\\" + AppGuid))
             {
                 if (mutex.WaitOne(0, false))
                 {
